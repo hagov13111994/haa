@@ -46,7 +46,7 @@
 
                 contadorElemento.textContent = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
             } else {
-                contadorElemento.textContent = "¡Llegó el día!";
+                contadorElemento.textContent = "¡Ya es tarde!";
                 clearInterval(intervalo);
             }
         }
