@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuenta Regresiva</title>
+    <style>
+        @font-face {
+            font-family: 'YouMurderer';
+            src: url('fonts/YouMurdererBB.ttf') format('truetype');
+        }
+
+        body {
+            background-color: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'YouMurderer', Arial, sans-serif;
+        }
+
+        #contador {
+            font-size: 150px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="contador"></div>
+
+    <script>
+        const contadorElemento = document.getElementById('contador');
+        const fechaObjetivo = new Date('2025-07-25T00:00:00').getTime();
+
+        function actualizarContador() {
+            const ahora = new Date().getTime();
+            const diferencia = fechaObjetivo - ahora;
+
+            if (diferencia > 0) {
+                const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+                const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+                contadorElemento.textContent = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+            } else {
+                contadorElemento.textContent = "¡Llegó el día!";
+                clearInterval(intervalo);
+            }
+        }
+
+        const intervalo = setInterval(actualizarContador, 1000);
+    </script>
+</body>
+</html>
